@@ -1,28 +1,40 @@
 package ua.com.serzh.subtitles.controllers;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ua.com.serzh.subtitles.services.Parser;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author sergii.zagryvyi on 28.09.2017
  */
-@RestController
-@RequestMapping("/subtitles")
+@Controller
+//@RequestMapping("/subtitles")
+@RequiredArgsConstructor
 public class SubtitlesController {
 
-    @RequestMapping(method = RequestMethod.POST)
-//    @PostMapping("/")
-    public ResponseEntity<List<String>> parseSubtitles(@RequestParam("file") MultipartFile file) {
-        List<String> result = new ArrayList<>();
-        return ResponseEntity.ok(result);
+    private final Parser parser;
+
+    @GetMapping("/")
+    public String listUploadedFiles() {
+        return "uploadForm";
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-//    @GetMapping("/")
+    @PostMapping("/")
+    public String handleFileUpload(@RequestParam("file") MultipartFile file,
+                                   RedirectAttributes redirectAttributes) {
+
+        List<String> listFromFile = parser.createListFromFile(file);
+        redirectAttributes.addFlashAttribute("messages", listFromFile);
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/greetings", method = RequestMethod.GET)
     public ResponseEntity<String> greetings() {
         return ResponseEntity.ok("Hi!");
     }

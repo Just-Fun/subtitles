@@ -1,10 +1,7 @@
-#spring:
-
 # Path of the main dispatcher servlet
 server:
-  servlet:
-    contextPath: /api/v1.0
-#    servlet-path: /api/v1.0
+#  servlet:
+#    contextPath: /api/v1.0
   port: 9004
 
 location: upload-dir

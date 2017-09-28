@@ -1,12 +1,13 @@
-package ua.com.serzh.subtitles.services;
+package ua.com.serzh.subtitles.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ua.com.serzh.subtitles.StorageProperties;
+import ua.com.serzh.subtitles.services.StorageService;
 
 import java.io.IOException;
-import java.nio.file.Files;
+import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -30,8 +31,9 @@ public class StorageServiceImpl implements StorageService {
             if (file.isEmpty()) {
 //                throw new StorageException("Failed to store empty file " + originalFilename);
             }
+            InputStream inputStream = file.getInputStream();
 //            Store to Hazelcast
-            Files.copy(file.getInputStream(), this.rootLocation.resolve(originalFilename));
+//            Files.copy(file.getInputStream(), this.rootLocation.resolve(originalFilename));
         } catch (IOException e) {
 //            throw new StorageException("Failed to store file " + originalFilename, e);
         }
