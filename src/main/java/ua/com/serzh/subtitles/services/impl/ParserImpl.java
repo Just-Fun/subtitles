@@ -1,10 +1,5 @@
 package ua.com.serzh.subtitles.services.impl;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-import ua.com.serzh.subtitles.services.Parser;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,11 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import lombok.extern.slf4j.Slf4j;
+import ua.com.serzh.subtitles.services.Parser;
+
 /**
  * @author sergii.zagryvyi on 28.09.2017
  */
 @Slf4j
-@Service
+//@Service
 public class ParserImpl implements Parser {
 
     public static final String ANY_LETTER = ".*[a-zA-Z]+.*+";
@@ -29,7 +29,7 @@ public class ParserImpl implements Parser {
 //            throw new SomeException("Failed to parse empty file " + originalFilename);
         }
 
-        InputStream inputStream = null;
+        InputStream inputStream;
         try {
              inputStream = file.getInputStream();
         } catch (IOException e) {

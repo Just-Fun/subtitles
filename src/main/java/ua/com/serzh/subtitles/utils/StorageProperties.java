@@ -1,4 +1,4 @@
-package ua.com.serzh.subtitles;
+package ua.com.serzh.subtitles.utils;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;

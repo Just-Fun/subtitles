@@ -3,7 +3,7 @@ package ua.com.serzh.subtitles.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import ua.com.serzh.subtitles.StorageProperties;
+import ua.com.serzh.subtitles.utils.StorageProperties;
 import ua.com.serzh.subtitles.services.StorageService;
 
 import java.io.IOException;
